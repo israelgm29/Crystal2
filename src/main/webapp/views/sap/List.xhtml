@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSapTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form >
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+
+                <div class="card rounded-3 ">
+                    <h6 class="card-header bg-danger text-light">Lista de Servicios de Agua Potable</h6>
+                    <div class="card-body ">
+                        <h:panelGroup rendered="#{sapController.items.rowCount > 0}">
+
+                            <table id="example" class="table table-striped display responsive nowrap" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>#{bundle.ListSapTitle_id}</th>
+                                        <th>#{bundle.ListSapTitle_name}</th>
+                                        <th>#{bundle.ListSapTitle_basevolume}</th>
+                                        <th>#{bundle.ListSapTitle_baseprice}</th>
+                                        <th>#{bundle.ListSapTitle_extraprice}</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{sapController.items}" var="item">
+                                        <tr>
+                                            <td><h:outputText value="#{item.id}"/></td>
+                                            <td><h:outputText value="#{item.name}"/></td>
+                                            <td><h:outputText value="#{item.basevolume} m3"/></td>
+                                            <td><h:outputText value="$ #{item.baseprice}"/></td>
+                                            <td><h:outputText value="$ #{item.extraprice}"/></td>
+                                            <td> <h:commandLink action="#{sapController.prepareView}">
+                                                    <span class=" uk-margin-small-right uk-text-primary fa fa-eye" uk-tooltip="Ver" ></span>
+                                                </h:commandLink>
+                                                <h:outputText value=" "/>
+                                                <h:commandLink action="#{sapController.prepareEdit}">
+                                                    <span class="uk-margin-small-right uk-text-emphasis far fa-edit" uk-tooltip="Editar" ></span>
+                                                </h:commandLink>
+                                                <h:outputText value=" "/>
+                                                <h:commandLink action="#{sapController.destroy}">
+                                                    <span class="uk-margin-small-right uk-text-danger fas fa-trash" uk-tooltip="Eliminar"></span>
+                                                </h:commandLink>
+                                            </td>
+                                        </tr>
+                                    </ui:repeat>   
+                                </tbody>
+                            </table>
+                        </h:panelGroup>
+                    </div>
+                </div>
+
+                <br />
+                <h:commandLink action="#{sapController.prepareCreate}" value="#{bundle.ListSapCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListSapIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

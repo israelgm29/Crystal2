@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAssignedTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAssignedLabel_assignedPK_id}" for="assignedPK_id" />
+                    <h:inputText id="assignedPK_id" value="#{assignedController.selected.assignedPK.id}" title="#{bundle.EditAssignedTitle_assignedPK_id}" required="true" requiredMessage="#{bundle.EditAssignedRequiredMessage_assignedPK_id}"/>
+                    <h:outputLabel value="#{bundle.EditAssignedLabel_debt}" for="debt" />
+                    <h:inputText id="debt" value="#{assignedController.selected.debt}" title="#{bundle.EditAssignedTitle_debt}" required="true" requiredMessage="#{bundle.EditAssignedRequiredMessage_debt}"/>
+                    <h:outputLabel value="#{bundle.EditAssignedLabel_assignmentdate}" for="assignmentdate" />
+                    <h:inputText id="assignmentdate" value="#{assignedController.selected.assignmentdate}" title="#{bundle.EditAssignedTitle_assignmentdate}" required="true" requiredMessage="#{bundle.EditAssignedRequiredMessage_assignmentdate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditAssignedLabel_status}" for="status" />
+                    <h:inputText id="status" value="#{assignedController.selected.status}" title="#{bundle.EditAssignedTitle_status}" required="true" requiredMessage="#{bundle.EditAssignedRequiredMessage_status}"/>
+                    <h:outputLabel value="#{bundle.EditAssignedLabel_beneficiary}" for="beneficiary" />
+                    <h:selectOneMenu id="beneficiary" value="#{assignedController.selected.beneficiary}" title="#{bundle.EditAssignedTitle_beneficiary}" required="true" requiredMessage="#{bundle.EditAssignedRequiredMessage_beneficiary}">
+                        <f:selectItems value="#{beneficiaryController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditAssignedLabel_measurer}" for="measurer" />
+                    <h:selectOneMenu id="measurer" value="#{assignedController.selected.measurer}" title="#{bundle.EditAssignedTitle_measurer}" required="true" requiredMessage="#{bundle.EditAssignedRequiredMessage_measurer}">
+                        <f:selectItems value="#{measurerController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{assignedController.update}" value="#{bundle.EditAssignedSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAssignedViewLink}"/>
+                <br />
+                <h:commandLink action="#{assignedController.prepareList}" value="#{bundle.EditAssignedShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAssignedIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

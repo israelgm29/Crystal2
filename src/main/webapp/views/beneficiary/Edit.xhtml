@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditBeneficiaryTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditBeneficiaryLabel_dni}" for="dni" />
+                    <h:inputText class="form-control form-control-sm" id="dni" value="#{beneficiaryController.selected.dni}" title="#{bundle.EditBeneficiaryTitle_dni}" required="true" requiredMessage="#{bundle.EditBeneficiaryRequiredMessage_dni}"/>
+                    <h:outputLabel value="#{bundle.EditBeneficiaryLabel_lastname}" for="lastname" />
+                    <h:inputText class="form-control form-control-sm" id="lastname" value="#{beneficiaryController.selected.lastname}" title="#{bundle.EditBeneficiaryTitle_lastname}" required="true" requiredMessage="#{bundle.EditBeneficiaryRequiredMessage_lastname}"/>
+                    <h:outputLabel value="#{bundle.EditBeneficiaryLabel_firstname}" for="firstname" />
+                    <h:inputText class="form-control form-control-sm" id="firstname" value="#{beneficiaryController.selected.firstname}" title="#{bundle.EditBeneficiaryTitle_firstname}" required="true" requiredMessage="#{bundle.EditBeneficiaryRequiredMessage_firstname}"/>
+                    <h:outputLabel value="#{bundle.EditBeneficiaryLabel_telephone}" for="telephone" />
+                    <h:inputText class="form-control form-control-sm" id="telephone" value="#{beneficiaryController.selected.telephone}" title="#{bundle.EditBeneficiaryTitle_telephone}" />
+                    <h:outputLabel value="#{bundle.EditBeneficiaryLabel_address}" for="address" />
+                    <h:inputText class="form-control form-control-sm" id="address" value="#{beneficiaryController.selected.address}" title="#{bundle.EditBeneficiaryTitle_address}" required="true" requiredMessage="#{bundle.EditBeneficiaryRequiredMessage_address}"/>
+                    <h:outputLabel value="#{bundle.EditBeneficiaryLabel_placereference}" for="placereference" />
+                    <h:inputTextarea class="form-control form-control-sm" id="placereference" value="#{beneficiaryController.selected.placereference}" title="#{bundle.EditBeneficiaryTitle_placereference}" />
+                    <h:outputLabel value="#{bundle.EditBeneficiaryLabel_villageid}" for="villageid" />
+                    <h:selectOneMenu class="form-select" id="villageid" value="#{beneficiaryController.selected.villageid}" title="#{bundle.EditBeneficiaryTitle_villageid}" required="true" requiredMessage="#{bundle.EditBeneficiaryRequiredMessage_villageid}">
+                        <f:selectItems value="#{villageController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink class=" btn btn-danger" action="#{beneficiaryController.update}" value="#{bundle.EditBeneficiarySaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditBeneficiaryViewLink}"/>
+                <br />
+                <h:commandLink action="#{beneficiaryController.prepareList}" value="#{bundle.EditBeneficiaryShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

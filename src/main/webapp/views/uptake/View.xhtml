@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewUptakeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewUptakeLabel_id}"/>
+                    <h:outputText value="#{uptakeController.selected.id}" title="#{bundle.ViewUptakeTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewUptakeLabel_datetaked}"/>
+                    <h:outputText value="#{uptakeController.selected.datetaked}" title="#{bundle.ViewUptakeTitle_datetaked}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewUptakeLabel_lastvaluetaken}"/>
+                    <h:outputText value="#{uptakeController.selected.lastvaluetaken}" title="#{bundle.ViewUptakeTitle_lastvaluetaken}"/>
+                    <h:outputText value="#{bundle.ViewUptakeLabel_currentvaluetaken}"/>
+                    <h:outputText value="#{uptakeController.selected.currentvaluetaken}" title="#{bundle.ViewUptakeTitle_currentvaluetaken}"/>
+                    <h:outputText value="#{bundle.ViewUptakeLabel_basevolume}"/>
+                    <h:outputText value="#{uptakeController.selected.basevolume}" title="#{bundle.ViewUptakeTitle_basevolume}"/>
+                    <h:outputText value="#{bundle.ViewUptakeLabel_baseprice}"/>
+                    <h:outputText value="#{uptakeController.selected.baseprice}" title="#{bundle.ViewUptakeTitle_baseprice}"/>
+                    <h:outputText value="#{bundle.ViewUptakeLabel_extraprice}"/>
+                    <h:outputText value="#{uptakeController.selected.extraprice}" title="#{bundle.ViewUptakeTitle_extraprice}"/>
+                    <h:outputText value="#{bundle.ViewUptakeLabel_volumeconsumed}"/>
+                    <h:outputText value="#{uptakeController.selected.volumeconsumed}" title="#{bundle.ViewUptakeTitle_volumeconsumed}"/>
+                    <h:outputText value="#{bundle.ViewUptakeLabel_volumeexceeded}"/>
+                    <h:outputText value="#{uptakeController.selected.volumeexceeded}" title="#{bundle.ViewUptakeTitle_volumeexceeded}"/>
+                    <h:outputText value="#{bundle.ViewUptakeLabel_totalprice}"/>
+                    <h:outputText value="#{uptakeController.selected.totalprice}" title="#{bundle.ViewUptakeTitle_totalprice}"/>
+                    <h:outputText value="#{bundle.ViewUptakeLabel_billed}"/>
+                    <h:outputText value="#{uptakeController.selected.billed}" title="#{bundle.ViewUptakeTitle_billed}"/>
+                    <h:outputText value="#{bundle.ViewUptakeLabel_measurerid}"/>
+                    <h:outputText value="#{uptakeController.selected.measurerid}" title="#{bundle.ViewUptakeTitle_measurerid}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{uptakeController.destroyAndView}" value="#{bundle.ViewUptakeDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewUptakeEditLink}"/>
+                <br />
+                <h:commandLink action="#{uptakeController.prepareCreate}" value="#{bundle.ViewUptakeCreateLink}" />
+                <br />
+                <h:commandLink action="#{uptakeController.prepareList}" value="#{bundle.ViewUptakeShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewUptakeIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

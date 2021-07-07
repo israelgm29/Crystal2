@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateMeasurerTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+
+            <h:form prependId="false" >
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateMeasurerLabel_number}" for="number" />
+                    <h:inputText id="number" value="#{measurerController.selected.number}" title="#{bundle.CreateMeasurerTitle_number}" required="true" requiredMessage="#{bundle.CreateMeasurerRequiredMessage_number}"/>
+                    <h:outputLabel value="#{bundle.CreateMeasurerLabel_installationdate}" for="installationdate" />
+                    <h:inputText id="myInput" class=" active form-control form-control-sm"  pt:placeholder="Seleccionar Fecha" pt:readonly="readonly" value="#{measurerController.selected.installationdate}" title="#{bundle.CreateMeasurerTitle_installationdate}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateMeasurerLabel_sapid}" for="sapid" />
+                    <h:selectOneMenu class="form-select" id="sapid" value="#{measurerController.selected.sapid}" title="#{bundle.CreateMeasurerTitle_sapid}" required="true" requiredMessage="#{bundle.CreateMeasurerRequiredMessage_sapid}">
+                        <f:selectItems value="#{sapController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateMeasurerLabel_statusid}" for="statusid" />
+                    <h:selectOneMenu class="form-select" id="statusid" value="#{measurerController.selected.statusid}" title="#{bundle.CreateMeasurerTitle_statusid}" required="true" requiredMessage="#{bundle.CreateMeasurerRequiredMessage_statusid}">
+                        <f:selectItems value="#{statusController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+
+                </h:panelGrid>
+                <br />
+                <h:commandLink class="btn btn-danger" action="#{measurerController.create}" >
+                    <i class="ms-2 me-2 far fa-save"/>#{bundle.CreateMeasurerSaveLink}
+                    <f:actionListener binding="#{measurerController.prepareList()}"></f:actionListener>
+                </h:commandLink>
+                <h:commandLink class="ms-2 btn btn-outline-secondary" action="#{measurerController.prepareList}" immediate="true">
+                    <i class="ms-2 me-2 text-danger fas fa-times"/>#{bundle.CreateMeasurerShowAllLink}
+                </h:commandLink>
+            </h:form>
+          
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+             
+        </ui:define>
+    </ui:composition>
+
+</html>

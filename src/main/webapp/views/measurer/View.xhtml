@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMeasurerTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewMeasurerLabel_id}"/>
+                    <h:outputText value="#{measurerController.selected.id}" title="#{bundle.ViewMeasurerTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewMeasurerLabel_number}"/>
+                    <h:outputText value="#{measurerController.selected.number}" title="#{bundle.ViewMeasurerTitle_number}"/>
+                    <h:outputText value="#{bundle.ViewMeasurerLabel_installationdate}"/>
+                    <h:outputText value="#{measurerController.selected.installationdate}" title="#{bundle.ViewMeasurerTitle_installationdate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewMeasurerLabel_sapid}"/>
+                    <h:outputText value="#{measurerController.selected.sapid}" title="#{bundle.ViewMeasurerTitle_sapid}"/>
+                    <h:outputText value="#{bundle.ViewMeasurerLabel_statusid}"/>
+                    <h:outputText value="#{measurerController.selected.statusid}" title="#{bundle.ViewMeasurerTitle_statusid}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{measurerController.destroyAndView}" value="#{bundle.ViewMeasurerDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewMeasurerEditLink}"/>
+                <br />
+                <h:commandLink action="#{measurerController.prepareCreate}" value="#{bundle.ViewMeasurerCreateLink}" />
+                <br />
+                <h:commandLink action="#{measurerController.prepareList}" value="#{bundle.ViewMeasurerShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewMeasurerIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

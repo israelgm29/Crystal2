@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title"> 
+            <h:outputText value="#{bundle.ListOperatorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form >
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListOperatorEmpty}" rendered="#{operatorController.items.rowCount == 0}"/>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card rounded-3 ">
+                            <h6 class="card-header bg-danger text-light">Lista de Usuarios del Sistema</h6>
+                            <div class="card-body ">
+                                <table id="example" class="table table-striped display responsive nowrap" style="width:100%">
+                                    <thead class="text-sm-start">
+                                        <tr>
+                                            <th>#{bundle.ListOperatorTitle_id}</th>
+                                            <th>#{bundle.ListOperatorTitle_username}</th>
+                                            <th>#{bundle.ListOperatorTitle_email}</th>
+                                            <th>#{bundle.ListOperatorTitle_dni}</th>
+                                            <th>#{bundle.ListOperatorTitle_firstname}</th>
+                                            <th>#{bundle.ListOperatorTitle_lastname}</th>
+                                            <th>#{bundle.ListOperatorTitle_telephone}</th>
+                                            <th>#{bundle.ListOperatorTitle_address}</th>
+                                            <th>#{bundle.ListOperatorTitle_roleid}</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ui:repeat value="#{operatorController.items}" var="item">
+                                            <tr>
+                                                <td> <h:outputText value="#{item.id}"/></td>
+                                                <td> <h:outputText value="#{item.username}"/></td>
+                                                <td> <h:outputText value="#{item.email}"/></td>
+                                                <td> <h:outputText value="#{item.dni}"/></td>
+                                                <td> <h:outputText value="#{item.firstname}"/></td>
+                                                <td> <h:outputText value="#{item.lastname}"/></td>
+                                                <td> <h:outputText value="#{item.telephone}"/></td>
+                                                <td> <h:outputText value="#{item.address}"/></td>
+                                                <td> <h:outputText value="#{item.roleid.name}"/></td>
+                                                <td> 
+                                                    <h:commandLink action="#{operatorController.prepareView}">
+                                                        <span class=" uk-margin-small-right uk-text-primary fa fa-eye" uk-tooltip="Ver"></span>
+                                                    </h:commandLink>
+                                                    <h:commandLink action="#{operatorController.prepareEdit}">
+                                                        <span class=" uk-margin-small-right uk-text-emphasis far fa-edit" uk-tooltip="Editar"></span>
+                                                    </h:commandLink>
+                                                    <h:commandLink action="#{operatorController.destroy}">
+                                                        <span class=" uk-margin-small-right uk-text-danger fas fa-trash" uk-tooltip="Borrar" ></span>
+                                                    </h:commandLink>
+                                                </td>
+                                            </tr>
+                                        </ui:repeat>
+                                    </tbody>
+                                </table>
+                                <h:commandLink class="mt-3 btn btn-danger" action="#{operatorController.prepareCreate}" value="#{bundle.ListOperatorCreateLink}">
+                                    <i class="fas fa-male fa-lg"></i>
+                                </h:commandLink>
+
+                                <div class="alert alert-warning d-flex align-items-center mt-2" role="alert">
+                                    <i class="fas fa-exclamation-triangle me-2 text-danger fa-lg"></i>
+                                    <div>
+                                        <strong>Recuerde</strong> Este modulo solo esta disponible para el administrador del sistema y sirve para crear los diferentes usuarios: 
+                                        <strong> Usuario Administrador, Usuario de Medidas y Usuario de Cobros</strong>
+                                        <button type="button" class="ms-2 btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                            <i class="fas fa-question "></i>  Ayuda
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+             
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Ayuda</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <dt class="mt-0">Cuenta de Administrador</dt>
+                                <p> Esta cuenta tiene acceso a todo el sistema y puede modificar todos los modulos</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Understood</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h:link outcome="/index" value="#{bundle.ListOperatorIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

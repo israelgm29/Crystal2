@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+  <!-- Define Persistence Unit -->
+  <persistence-unit name="my_persistence_unit" transaction-type="JTA">
+    <jta-data-source>java:app/Crystal</jta-data-source>
+    <class>entidades.Anotherservice</class>
+    <class>entidades.Anotherservicedetail</class>
+    <class>entidades.Assigned</class>
+    <class>entidades.Audit</class>
+    <class>entidades.Beneficiary</class>
+    <class>entidades.Entity</class>
+    <class>entidades.Invoice</class>
+    <class>entidades.Measurer</class>
+    <class>entidades.Operator</class>
+    <class>entidades.Role</class>
+    <class>entidades.Sap</class>
+    <class>entidades.Sapdetail</class>
+    <class>entidades.Status</class>
+    <class>entidades.Uptake</class>
+    <class>entidades.Village</class>
+    <properties>
+      <validation-mode>NONE</validation-mode>
+    </properties>
+  </persistence-unit>
+</persistence>

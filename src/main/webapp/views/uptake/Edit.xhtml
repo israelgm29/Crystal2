@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditUptakeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditUptakeLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{uptakeController.selected.id}" title="#{bundle.EditUptakeTitle_id}" required="true" requiredMessage="#{bundle.EditUptakeRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditUptakeLabel_datetaked}" for="datetaked" />
+                    <h:inputText id="datetaked" value="#{uptakeController.selected.datetaked}" title="#{bundle.EditUptakeTitle_datetaked}" required="true" requiredMessage="#{bundle.EditUptakeRequiredMessage_datetaked}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditUptakeLabel_lastvaluetaken}" for="lastvaluetaken" />
+                    <h:inputText id="lastvaluetaken" value="#{uptakeController.selected.lastvaluetaken}" title="#{bundle.EditUptakeTitle_lastvaluetaken}" required="true" requiredMessage="#{bundle.EditUptakeRequiredMessage_lastvaluetaken}"/>
+                    <h:outputLabel value="#{bundle.EditUptakeLabel_currentvaluetaken}" for="currentvaluetaken" />
+                    <h:inputText id="currentvaluetaken" value="#{uptakeController.selected.currentvaluetaken}" title="#{bundle.EditUptakeTitle_currentvaluetaken}" required="true" requiredMessage="#{bundle.EditUptakeRequiredMessage_currentvaluetaken}"/>
+                    <h:outputLabel value="#{bundle.EditUptakeLabel_basevolume}" for="basevolume" />
+                    <h:inputText id="basevolume" value="#{uptakeController.selected.basevolume}" title="#{bundle.EditUptakeTitle_basevolume}" required="true" requiredMessage="#{bundle.EditUptakeRequiredMessage_basevolume}"/>
+                    <h:outputLabel value="#{bundle.EditUptakeLabel_baseprice}" for="baseprice" />
+                    <h:inputText id="baseprice" value="#{uptakeController.selected.baseprice}" title="#{bundle.EditUptakeTitle_baseprice}" required="true" requiredMessage="#{bundle.EditUptakeRequiredMessage_baseprice}"/>
+                    <h:outputLabel value="#{bundle.EditUptakeLabel_extraprice}" for="extraprice" />
+                    <h:inputText id="extraprice" value="#{uptakeController.selected.extraprice}" title="#{bundle.EditUptakeTitle_extraprice}" required="true" requiredMessage="#{bundle.EditUptakeRequiredMessage_extraprice}"/>
+                    <h:outputLabel value="#{bundle.EditUptakeLabel_volumeconsumed}" for="volumeconsumed" />
+                    <h:inputText id="volumeconsumed" value="#{uptakeController.selected.volumeconsumed}" title="#{bundle.EditUptakeTitle_volumeconsumed}" required="true" requiredMessage="#{bundle.EditUptakeRequiredMessage_volumeconsumed}"/>
+                    <h:outputLabel value="#{bundle.EditUptakeLabel_volumeexceeded}" for="volumeexceeded" />
+                    <h:inputText id="volumeexceeded" value="#{uptakeController.selected.volumeexceeded}" title="#{bundle.EditUptakeTitle_volumeexceeded}" required="true" requiredMessage="#{bundle.EditUptakeRequiredMessage_volumeexceeded}"/>
+                    <h:outputLabel value="#{bundle.EditUptakeLabel_totalprice}" for="totalprice" />
+                    <h:inputText id="totalprice" value="#{uptakeController.selected.totalprice}" title="#{bundle.EditUptakeTitle_totalprice}" required="true" requiredMessage="#{bundle.EditUptakeRequiredMessage_totalprice}"/>
+                    <h:outputLabel value="#{bundle.EditUptakeLabel_billed}" for="billed" />
+                    <h:inputText id="billed" value="#{uptakeController.selected.billed}" title="#{bundle.EditUptakeTitle_billed}" required="true" requiredMessage="#{bundle.EditUptakeRequiredMessage_billed}"/>
+                    <h:outputLabel value="#{bundle.EditUptakeLabel_measurerid}" for="measurerid" />
+                    <h:selectOneMenu id="measurerid" value="#{uptakeController.selected.measurerid}" title="#{bundle.EditUptakeTitle_measurerid}" required="true" requiredMessage="#{bundle.EditUptakeRequiredMessage_measurerid}">
+                        <f:selectItems value="#{measurerController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{uptakeController.update}" value="#{bundle.EditUptakeSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditUptakeViewLink}"/>
+                <br />
+                <h:commandLink action="#{uptakeController.prepareList}" value="#{bundle.EditUptakeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditUptakeIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

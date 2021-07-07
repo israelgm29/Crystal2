@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSapdetailTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListSapdetailEmpty}" rendered="#{sapdetailController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{sapdetailController.items.rowCount > 0}">
+                    <h:outputText value="#{sapdetailController.pagination.pageFirstItem + 1}..#{sapdetailController.pagination.pageLastItem + 1}/#{sapdetailController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{sapdetailController.previous}" value="#{bundle.Previous} #{sapdetailController.pagination.pageSize}" rendered="#{sapdetailController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{sapdetailController.next}" value="#{bundle.Next} #{sapdetailController.pagination.pageSize}" rendered="#{sapdetailController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{sapdetailController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSapdetailTitle_sapdetailPK_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sapdetailPK.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSapdetailTitle_invoice}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.invoice}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSapdetailTitle_uptake}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.uptake}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{sapdetailController.prepareView}" value="#{bundle.ListSapdetailViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{sapdetailController.prepareEdit}" value="#{bundle.ListSapdetailEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{sapdetailController.destroy}" value="#{bundle.ListSapdetailDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{sapdetailController.prepareCreate}" value="#{bundle.ListSapdetailCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListSapdetailIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListUptakeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListUptakeEmpty}" rendered="#{uptakeController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{uptakeController.items.rowCount > 0}">
+                    <h:outputText value="#{uptakeController.pagination.pageFirstItem + 1}..#{uptakeController.pagination.pageLastItem + 1}/#{uptakeController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{uptakeController.previous}" value="#{bundle.Previous} #{uptakeController.pagination.pageSize}" rendered="#{uptakeController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{uptakeController.next}" value="#{bundle.Next} #{uptakeController.pagination.pageSize}" rendered="#{uptakeController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{uptakeController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUptakeTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUptakeTitle_datetaked}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.datetaked}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUptakeTitle_lastvaluetaken}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.lastvaluetaken}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUptakeTitle_currentvaluetaken}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.currentvaluetaken}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUptakeTitle_basevolume}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.basevolume}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUptakeTitle_baseprice}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.baseprice}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUptakeTitle_extraprice}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.extraprice}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUptakeTitle_volumeconsumed}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.volumeconsumed}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUptakeTitle_volumeexceeded}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.volumeexceeded}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUptakeTitle_totalprice}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.totalprice}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUptakeTitle_billed}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.billed}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUptakeTitle_measurerid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.measurerid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{uptakeController.prepareView}" value="#{bundle.ListUptakeViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{uptakeController.prepareEdit}" value="#{bundle.ListUptakeEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{uptakeController.destroy}" value="#{bundle.ListUptakeDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{uptakeController.prepareCreate}" value="#{bundle.ListUptakeCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListUptakeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

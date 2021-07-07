@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEntityTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEntityLabel_province}" for="province" />
+                    <h:inputText id="province" value="#{entityController.selected.province}" title="#{bundle.EditEntityTitle_province}" required="true" requiredMessage="#{bundle.EditEntityRequiredMessage_province}"/>
+                    <h:outputLabel value="#{bundle.EditEntityLabel_canton}" for="canton" />
+                    <h:inputText id="canton" value="#{entityController.selected.canton}" title="#{bundle.EditEntityTitle_canton}" required="true" requiredMessage="#{bundle.EditEntityRequiredMessage_canton}"/>
+                    <h:outputLabel value="#{bundle.EditEntityLabel_community}" for="community" />
+                    <h:inputText id="community" value="#{entityController.selected.community}" title="#{bundle.EditEntityTitle_community}" required="true" requiredMessage="#{bundle.EditEntityRequiredMessage_community}"/>
+                    <h:outputLabel value="#{bundle.EditEntityLabel_address}" for="address" />
+                    <h:inputText id="address" value="#{entityController.selected.address}" title="#{bundle.EditEntityTitle_address}" required="true" requiredMessage="#{bundle.EditEntityRequiredMessage_address}"/>
+                    <h:outputLabel value="#{bundle.EditEntityLabel_telephone}" for="telephone" />
+                    <h:inputText id="telephone" value="#{entityController.selected.telephone}" title="#{bundle.EditEntityTitle_telephone}" required="true" requiredMessage="#{bundle.EditEntityRequiredMessage_telephone}"/>
+                    <h:outputLabel value="#{bundle.EditEntityLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{entityController.selected.email}" title="#{bundle.EditEntityTitle_email}" required="true" requiredMessage="#{bundle.EditEntityRequiredMessage_email}"/>
+                    <h:outputLabel value="#{bundle.EditEntityLabel_ruc}" for="ruc" />
+                    <h:inputText id="ruc" value="#{entityController.selected.ruc}" title="#{bundle.EditEntityTitle_ruc}" required="true" requiredMessage="#{bundle.EditEntityRequiredMessage_ruc}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{entityController.update}" value="#{bundle.EditEntitySaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEntityViewLink}"/>
+                <br />
+                <h:commandLink action="#{entityController.prepareList}" value="#{bundle.EditEntityShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditEntityIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

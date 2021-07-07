@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateBeneficiaryTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateBeneficiaryLabel_id}" for="id" />
+                    <h:inputText class="form-control form-control-sm" id="id" value="#{beneficiaryController.selected.id}" title="#{bundle.CreateBeneficiaryTitle_id}" required="true" requiredMessage="#{bundle.CreateBeneficiaryRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateBeneficiaryLabel_dni}" for="dni" />
+                    <h:inputText class="form-control form-control-sm" id="dni" value="#{beneficiaryController.selected.dni}" title="#{bundle.CreateBeneficiaryTitle_dni}" required="true" requiredMessage="#{bundle.CreateBeneficiaryRequiredMessage_dni}"/>
+                    <h:outputLabel value="#{bundle.CreateBeneficiaryLabel_lastname}" for="lastname" />
+                    <h:inputText class="form-control form-control-sm" id="lastname" value="#{beneficiaryController.selected.lastname}" title="#{bundle.CreateBeneficiaryTitle_lastname}" required="true" requiredMessage="#{bundle.CreateBeneficiaryRequiredMessage_lastname}"/>
+                    <h:outputLabel value="#{bundle.CreateBeneficiaryLabel_firstname}" for="firstname" />
+                    <h:inputText class="form-control form-control-sm" id="firstname" value="#{beneficiaryController.selected.firstname}" title="#{bundle.CreateBeneficiaryTitle_firstname}" required="true" requiredMessage="#{bundle.CreateBeneficiaryRequiredMessage_firstname}"/>
+                    <h:outputLabel value="#{bundle.CreateBeneficiaryLabel_telephone}" for="telephone" />
+                    <h:inputText class="form-control form-control-sm" id="telephone" value="#{beneficiaryController.selected.telephone}" title="#{bundle.CreateBeneficiaryTitle_telephone}" />
+                    <h:outputLabel value="#{bundle.CreateBeneficiaryLabel_address}" for="address" />
+                    <h:inputText class="form-control form-control-sm" id="address" value="#{beneficiaryController.selected.address}" title="#{bundle.CreateBeneficiaryTitle_address}" required="true" requiredMessage="#{bundle.CreateBeneficiaryRequiredMessage_address}"/>
+                    <h:outputLabel value="#{bundle.CreateBeneficiaryLabel_placereference}" for="placereference" />
+                    <h:inputText class="form-control form-control-sm" id="placereference" value="#{beneficiaryController.selected.placereference}" title="#{bundle.CreateBeneficiaryTitle_placereference}" />
+                    <h:outputLabel value="#{bundle.CreateBeneficiaryLabel_villageid}" for="villageid" />
+                    <h:selectOneMenu id="villageid" value="#{beneficiaryController.selected.villageid}" title="#{bundle.CreateBeneficiaryTitle_villageid}" required="true" requiredMessage="#{bundle.CreateBeneficiaryRequiredMessage_villageid}">
+                        <f:selectItems value="#{villageController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{beneficiaryController.create}" value="#{bundle.CreateBeneficiarySaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{beneficiaryController.prepareList}" value="#{bundle.CreateBeneficiaryShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateBeneficiaryIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

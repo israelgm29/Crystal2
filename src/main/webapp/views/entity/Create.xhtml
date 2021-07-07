@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEntityTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateEntityLabel_province}" for="province" />
+                    <h:inputText id="province" value="#{entityController.selected.province}" title="#{bundle.CreateEntityTitle_province}" required="true" requiredMessage="#{bundle.CreateEntityRequiredMessage_province}"/>
+                    <h:outputLabel value="#{bundle.CreateEntityLabel_canton}" for="canton" />
+                    <h:inputText id="canton" value="#{entityController.selected.canton}" title="#{bundle.CreateEntityTitle_canton}" required="true" requiredMessage="#{bundle.CreateEntityRequiredMessage_canton}"/>
+                    <h:outputLabel value="#{bundle.CreateEntityLabel_community}" for="community" />
+                    <h:inputText id="community" value="#{entityController.selected.community}" title="#{bundle.CreateEntityTitle_community}" required="true" requiredMessage="#{bundle.CreateEntityRequiredMessage_community}"/>
+                    <h:outputLabel value="#{bundle.CreateEntityLabel_address}" for="address" />
+                    <h:inputText id="address" value="#{entityController.selected.address}" title="#{bundle.CreateEntityTitle_address}" required="true" requiredMessage="#{bundle.CreateEntityRequiredMessage_address}"/>
+                    <h:outputLabel value="#{bundle.CreateEntityLabel_telephone}" for="telephone" />
+                    <h:inputText id="telephone" value="#{entityController.selected.telephone}" title="#{bundle.CreateEntityTitle_telephone}" required="true" requiredMessage="#{bundle.CreateEntityRequiredMessage_telephone}"/>
+                    <h:outputLabel value="#{bundle.CreateEntityLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{entityController.selected.email}" title="#{bundle.CreateEntityTitle_email}" required="true" requiredMessage="#{bundle.CreateEntityRequiredMessage_email}"/>
+                    <h:outputLabel value="#{bundle.CreateEntityLabel_ruc}" for="ruc" />
+                    <h:inputText id="ruc" value="#{entityController.selected.ruc}" title="#{bundle.CreateEntityTitle_ruc}" required="true" requiredMessage="#{bundle.CreateEntityRequiredMessage_ruc}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{entityController.create}" value="#{bundle.CreateEntitySaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{entityController.prepareList}" value="#{bundle.CreateEntityShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateEntityIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

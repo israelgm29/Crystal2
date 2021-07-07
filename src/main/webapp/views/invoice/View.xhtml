@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewInvoiceTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewInvoiceLabel_id}"/>
+                    <h:outputText value="#{invoiceController.selected.id}" title="#{bundle.ViewInvoiceTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewInvoiceLabel_number}"/>
+                    <h:outputText value="#{invoiceController.selected.number}" title="#{bundle.ViewInvoiceTitle_number}"/>
+                    <h:outputText value="#{bundle.ViewInvoiceLabel_dateofissue}"/>
+                    <h:outputText value="#{invoiceController.selected.dateofissue}" title="#{bundle.ViewInvoiceTitle_dateofissue}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewInvoiceLabel_totaltopay}"/>
+                    <h:outputText value="#{invoiceController.selected.totaltopay}" title="#{bundle.ViewInvoiceTitle_totaltopay}"/>
+                    <h:outputText value="#{bundle.ViewInvoiceLabel_payed}"/>
+                    <h:outputText value="#{invoiceController.selected.payed}" title="#{bundle.ViewInvoiceTitle_payed}"/>
+                    <h:outputText value="#{bundle.ViewInvoiceLabel_beneficiaryid}"/>
+                    <h:outputText value="#{invoiceController.selected.beneficiaryid}" title="#{bundle.ViewInvoiceTitle_beneficiaryid}"/>
+                    <h:outputText value="#{bundle.ViewInvoiceLabel_debtcollectorid}"/>
+                    <h:outputText value="#{invoiceController.selected.debtcollectorid}" title="#{bundle.ViewInvoiceTitle_debtcollectorid}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{invoiceController.destroyAndView}" value="#{bundle.ViewInvoiceDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewInvoiceEditLink}"/>
+                <br />
+                <h:commandLink action="#{invoiceController.prepareCreate}" value="#{bundle.ViewInvoiceCreateLink}" />
+                <br />
+                <h:commandLink action="#{invoiceController.prepareList}" value="#{bundle.ViewInvoiceShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewInvoiceIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

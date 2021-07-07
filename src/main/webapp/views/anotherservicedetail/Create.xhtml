@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAnotherservicedetailTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAnotherservicedetailLabel_anotherservicedetailPK_id}" for="anotherservicedetailPK_id" />
+                    <h:inputText id="anotherservicedetailPK_id" value="#{anotherservicedetailController.selected.anotherservicedetailPK.id}" title="#{bundle.CreateAnotherservicedetailTitle_anotherservicedetailPK_id}" required="true" requiredMessage="#{bundle.CreateAnotherservicedetailRequiredMessage_anotherservicedetailPK_id}"/>
+                    <h:outputLabel value="#{bundle.CreateAnotherservicedetailLabel_price}" for="price" />
+                    <h:inputText id="price" value="#{anotherservicedetailController.selected.price}" title="#{bundle.CreateAnotherservicedetailTitle_price}" required="true" requiredMessage="#{bundle.CreateAnotherservicedetailRequiredMessage_price}"/>
+                    <h:outputLabel value="#{bundle.CreateAnotherservicedetailLabel_anotherservice}" for="anotherservice" />
+                    <h:selectOneMenu id="anotherservice" value="#{anotherservicedetailController.selected.anotherservice}" title="#{bundle.CreateAnotherservicedetailTitle_anotherservice}" required="true" requiredMessage="#{bundle.CreateAnotherservicedetailRequiredMessage_anotherservice}">
+                        <f:selectItems value="#{anotherserviceController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateAnotherservicedetailLabel_invoice}" for="invoice" />
+                    <h:selectOneMenu id="invoice" value="#{anotherservicedetailController.selected.invoice}" title="#{bundle.CreateAnotherservicedetailTitle_invoice}" required="true" requiredMessage="#{bundle.CreateAnotherservicedetailRequiredMessage_invoice}">
+                        <f:selectItems value="#{invoiceController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{anotherservicedetailController.create}" value="#{bundle.CreateAnotherservicedetailSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{anotherservicedetailController.prepareList}" value="#{bundle.CreateAnotherservicedetailShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAnotherservicedetailIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

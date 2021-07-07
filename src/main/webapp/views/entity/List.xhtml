@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEntityTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListEntityEmpty}" rendered="#{entityController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{entityController.items.rowCount > 0}">
+                    <h:outputText value="#{entityController.pagination.pageFirstItem + 1}..#{entityController.pagination.pageLastItem + 1}/#{entityController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{entityController.previous}" value="#{bundle.Previous} #{entityController.pagination.pageSize}" rendered="#{entityController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{entityController.next}" value="#{bundle.Next} #{entityController.pagination.pageSize}" rendered="#{entityController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{entityController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEntityTitle_province}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.province}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEntityTitle_canton}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.canton}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEntityTitle_community}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.community}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEntityTitle_address}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.address}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEntityTitle_telephone}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telephone}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEntityTitle_email}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEntityTitle_ruc}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ruc}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{entityController.prepareView}" value="#{bundle.ListEntityViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{entityController.prepareEdit}" value="#{bundle.ListEntityEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{entityController.destroy}" value="#{bundle.ListEntityDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{entityController.prepareCreate}" value="#{bundle.ListEntityCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListEntityIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

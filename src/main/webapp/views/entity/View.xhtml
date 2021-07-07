@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEntityTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewEntityLabel_province}"/>
+                    <h:outputText value="#{entityController.selected.province}" title="#{bundle.ViewEntityTitle_province}"/>
+                    <h:outputText value="#{bundle.ViewEntityLabel_canton}"/>
+                    <h:outputText value="#{entityController.selected.canton}" title="#{bundle.ViewEntityTitle_canton}"/>
+                    <h:outputText value="#{bundle.ViewEntityLabel_community}"/>
+                    <h:outputText value="#{entityController.selected.community}" title="#{bundle.ViewEntityTitle_community}"/>
+                    <h:outputText value="#{bundle.ViewEntityLabel_address}"/>
+                    <h:outputText value="#{entityController.selected.address}" title="#{bundle.ViewEntityTitle_address}"/>
+                    <h:outputText value="#{bundle.ViewEntityLabel_telephone}"/>
+                    <h:outputText value="#{entityController.selected.telephone}" title="#{bundle.ViewEntityTitle_telephone}"/>
+                    <h:outputText value="#{bundle.ViewEntityLabel_email}"/>
+                    <h:outputText value="#{entityController.selected.email}" title="#{bundle.ViewEntityTitle_email}"/>
+                    <h:outputText value="#{bundle.ViewEntityLabel_ruc}"/>
+                    <h:outputText value="#{entityController.selected.ruc}" title="#{bundle.ViewEntityTitle_ruc}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{entityController.destroyAndView}" value="#{bundle.ViewEntityDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewEntityEditLink}"/>
+                <br />
+                <h:commandLink action="#{entityController.prepareCreate}" value="#{bundle.ViewEntityCreateLink}" />
+                <br />
+                <h:commandLink action="#{entityController.prepareList}" value="#{bundle.ViewEntityShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewEntityIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

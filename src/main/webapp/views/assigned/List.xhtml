@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAssignedTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListAssignedEmpty}" rendered="#{assignedController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{assignedController.items.rowCount > 0}">
+                    <h:outputText value="#{assignedController.pagination.pageFirstItem + 1}..#{assignedController.pagination.pageLastItem + 1}/#{assignedController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{assignedController.previous}" value="#{bundle.Previous} #{assignedController.pagination.pageSize}" rendered="#{assignedController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{assignedController.next}" value="#{bundle.Next} #{assignedController.pagination.pageSize}" rendered="#{assignedController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable class="table table-hover" value="#{assignedController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAssignedTitle_assignedPK_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.assignedPK.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAssignedTitle_debt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.debt}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAssignedTitle_assignmentdate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.assignmentdate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAssignedTitle_status}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.status}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAssignedTitle_beneficiary}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.beneficiary.lastname} #{item.beneficiary.firstname}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAssignedTitle_measurer}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.measurer}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{assignedController.prepareView}" value="#{bundle.ListAssignedViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{assignedController.prepareEdit}" value="#{bundle.ListAssignedEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{assignedController.destroy}" value="#{bundle.ListAssignedDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{assignedController.prepareCreate}" value="#{bundle.ListAssignedCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListAssignedIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

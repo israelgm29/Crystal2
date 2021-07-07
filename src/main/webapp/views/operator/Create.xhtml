@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateOperatorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-md-6">
+                    <h:form class="row g-2">
+                        <strong>Datos de Usuario</strong>
+                        <div class="col-md-6">
+                            <h:outputLabel value="#{bundle.CreateOperatorLabel_firstname}" for="firstname" />
+                            <h:inputText class="text-capitalize form-control form-control-sm"  id="firstname" value="#{operatorController.selected.firstname}" title="#{bundle.CreateOperatorTitle_firstname}" required="true" requiredMessage="#{bundle.CreateOperatorRequiredMessage_firstname}"/>
+                            <h:message class="text-danger" for="firstname" />
+                        </div>
+                        <div class="col-md-6">
+                            <h:outputLabel value="#{bundle.CreateOperatorLabel_lastname}" for="lastname" />
+                            <h:inputText class="text-capitalize form-control form-control-sm"  id="lastname" value="#{operatorController.selected.lastname}" title="#{bundle.CreateOperatorTitle_lastname}" required="true" requiredMessage="#{bundle.CreateOperatorRequiredMessage_lastname}"/>
+                            <h:message class="text-danger" for="lastname" style="color: red"/>
+                        </div>
+                        <div class="col-12 col-md-12">
+                            <h:outputLabel value="#{bundle.CreateOperatorLabel_email}" for="email" />
+                            <h:inputText  class="form-control form-control-sm" id="email" value="#{operatorController.selected.email}" title="#{bundle.CreateOperatorTitle_email}" required="true" requiredMessage="#{bundle.CreateOperatorRequiredMessage_email}"/>
+                            <h:message class="text-danger" for="email" style="color: red"/>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <h:outputLabel value="#{bundle.CreateOperatorLabel_dni}" for="dni" />
+                            <h:inputText maxlength="10" class="form-control form-control-sm" id="dni" value="#{operatorController.selected.dni}" title="#{bundle.CreateOperatorTitle_dni}" required="true" requiredMessage="#{bundle.CreateOperatorRequiredMessage_dni}"/>
+                            <h:message class="text-danger" for="dni" style="color: red"/>
+                        </div>
+                        <div class="col-md-6">
+                            <h:outputLabel value="#{bundle.CreateOperatorLabel_telephone}" for="telephone" />
+                            <h:inputText maxlength="10" class="form-control form-control-sm"  id="telephone" value="#{operatorController.selected.telephone}" title="#{bundle.CreateOperatorTitle_telephone}" />
+                            <h:message class="text-danger" for="telephone" style="color: red"/>
+                        </div>
+                        <div class="col-md-12">
+                            <h:outputLabel value="#{bundle.CreateOperatorLabel_address}" for="address" />
+                            <h:inputText class="text-capitalize form-control form-control-sm"  id="address" value="#{operatorController.selected.address}" title="#{bundle.CreateOperatorTitle_address}" />
+                            <h:message class="text-danger" for="address" style="color: red"/>
+                        </div>
+                        <strong>Datos de Cuenta</strong>
+
+                        <div class="col-12 col-md-12">
+                            <h:outputLabel value="#{bundle.CreateOperatorLabel_roleid}" for="roleid" />
+                            <h:selectOneMenu class="form-select form-select-sm" id="roleid" value="#{operatorController.selected.roleid}" title="#{bundle.CreateOperatorTitle_roleid}" required="true" requiredMessage="#{bundle.CreateOperatorRequiredMessage_roleid}">
+                                <f:selectItems value="#{roleController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                            <h:message class="text-danger" for="roleid" style="color: red"/> 
+                        </div>
+                        <div class="col-12 col-md-12">
+                            <h:outputLabel value="#{bundle.CreateOperatorLabel_username}" for="username" />
+                            <h:inputText  class="text-capitalize form-control form-control-sm" id="username" value="#{operatorController.selected.username}" title="#{bundle.CreateOperatorTitle_username}" required="true" requiredMessage="#{bundle.CreateOperatorRequiredMessage_username}"/>
+                            <h:message class="text-danger" for="username" style="color: red"/>
+                        </div>
+                        <div class="col-12 col-md-12">
+                            <h:outputLabel value="#{bundle.CreateOperatorLabel_password}" for="password" />
+                            <h:inputText  class=" form-control form-control-sm" id="password" value="#{operatorController.selected.password}" title="#{bundle.CreateOperatorTitle_password}" required="true" requiredMessage="#{bundle.CreateOperatorRequiredMessage_password}"/>
+                            <h:message class="text-danger" for="password" style="color: red"/>
+                        </div>
+                        <div class="mt-3 col-md-12 col-12">
+                            <h:commandLink class="m-2 btn btn-danger" action="#{operatorController.create}"  actionListener="#{operatorController.prepareList}">
+                                <i class="me-2 far fa-save fa-lg"></i>Guardar
+                            </h:commandLink>
+                            <h:commandLink class="m-2 btn btn-outline-secondary" action="#{operatorController.prepareList}" immediate="true">
+                                <i class="ms-2 me-2 text-danger fas fa-times "/>#{bundle.EditOperatorShowAllLink}
+                            </h:commandLink>
+                        </div>
+                        
+                    </h:form>
+                </div>
+
+            </div>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditInvoiceTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditInvoiceLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{invoiceController.selected.id}" title="#{bundle.EditInvoiceTitle_id}" required="true" requiredMessage="#{bundle.EditInvoiceRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditInvoiceLabel_number}" for="number" />
+                    <h:inputText id="number" value="#{invoiceController.selected.number}" title="#{bundle.EditInvoiceTitle_number}" required="true" requiredMessage="#{bundle.EditInvoiceRequiredMessage_number}"/>
+                    <h:outputLabel value="#{bundle.EditInvoiceLabel_dateofissue}" for="dateofissue" />
+                    <h:inputText id="dateofissue" value="#{invoiceController.selected.dateofissue}" title="#{bundle.EditInvoiceTitle_dateofissue}" required="true" requiredMessage="#{bundle.EditInvoiceRequiredMessage_dateofissue}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditInvoiceLabel_totaltopay}" for="totaltopay" />
+                    <h:inputText id="totaltopay" value="#{invoiceController.selected.totaltopay}" title="#{bundle.EditInvoiceTitle_totaltopay}" required="true" requiredMessage="#{bundle.EditInvoiceRequiredMessage_totaltopay}"/>
+                    <h:outputLabel value="#{bundle.EditInvoiceLabel_payed}" for="payed" />
+                    <h:inputText id="payed" value="#{invoiceController.selected.payed}" title="#{bundle.EditInvoiceTitle_payed}" required="true" requiredMessage="#{bundle.EditInvoiceRequiredMessage_payed}"/>
+                    <h:outputLabel value="#{bundle.EditInvoiceLabel_beneficiaryid}" for="beneficiaryid" />
+                    <h:selectOneMenu id="beneficiaryid" value="#{invoiceController.selected.beneficiaryid}" title="#{bundle.EditInvoiceTitle_beneficiaryid}" required="true" requiredMessage="#{bundle.EditInvoiceRequiredMessage_beneficiaryid}">
+                        <f:selectItems value="#{beneficiaryController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditInvoiceLabel_debtcollectorid}" for="debtcollectorid" />
+                    <h:selectOneMenu id="debtcollectorid" value="#{invoiceController.selected.debtcollectorid}" title="#{bundle.EditInvoiceTitle_debtcollectorid}" required="true" requiredMessage="#{bundle.EditInvoiceRequiredMessage_debtcollectorid}">
+                        <f:selectItems value="#{operatorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{invoiceController.update}" value="#{bundle.EditInvoiceSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditInvoiceViewLink}"/>
+                <br />
+                <h:commandLink action="#{invoiceController.prepareList}" value="#{bundle.EditInvoiceShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditInvoiceIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

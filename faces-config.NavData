@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="views/beneficiary/List.xhtml" x="16580" y="32" zoom="true"/>
+        <Node id="views/beneficiary/Create.xhtml" x="10505" y="32" zoom="true"/>
+        <Node id="views/invoice/Edit.xhtml" x="14801" y="32" zoom="true"/>
+        <Node id="views/village/List.xhtml" x="15107" y="32" zoom="true"/>
+        <Node id="views/sap/Create.xhtml" x="16909" y="32" zoom="true"/>
+        <Node id="views/entity/List.xhtml" x="393" y="32" zoom="true"/>
+        <Node id="views/invoice/Create.xhtml" x="3265" y="32" zoom="true"/>
+        <Node id="views/audit/Edit.xhtml" x="6678" y="32" zoom="true"/>
+        <Node id="views/audit/List.xhtml" x="10211" y="32" zoom="true"/>
+        <Node id="views/village/View.xhtml" x="4234" y="32" zoom="true"/>
+        <Node id="views/audit/View.xhtml" x="11169" y="32" zoom="true"/>
+        <Node id="views/anotherservicedetail/Create.xhtml" x="11860" y="32" zoom="true"/>
+        <Node id="views/uptake/List.xhtml" x="4543" y="32" zoom="true"/>
+        <Node id="views/status/View.xhtml" x="5170" y="32" zoom="true"/>
+        <Node id="views/invoice/List.xhtml" x="2654" y="32" zoom="true"/>
+        <Node id="views/sapdetail/Create.xhtml" x="8572" y="32" zoom="true"/>
+        <Node id="index.xhtml" x="5479" y="32" zoom="true"/>
+        <Node id="views/village/Edit.xhtml" x="6972" y="32" zoom="true"/>
+        <Node id="views/entity/Create.xhtml" x="3920" y="32" zoom="true"/>
+        <Node id="views/uptake/View.xhtml" x="19109" y="32" zoom="true"/>
+        <Node id="views/assigned/List.xhtml" x="10851" y="32" zoom="true"/>
+        <Node id="views/sap/Edit.xhtml" x="12260" y="32" zoom="true"/>
+        <Node id="views/anotherservicedetail/List.xhtml" x="17213" y="32" zoom="true"/>
+        <Node id="views/invoice/View.xhtml" x="13896" y="32" zoom="true"/>
+        <Node id="views/status/Create.xhtml" x="9892" y="32" zoom="true"/>
+        <Node id="views/entity/Edit.xhtml" x="14504" y="32" zoom="true"/>
+        <Node id="views/assigned/View.xhtml" x="18496" y="32" zoom="true"/>
+        <Node id="views/beneficiary/View.xhtml" x="12876" y="32" zoom="true"/>
+        <Node id="views/anotherservice/Edit.xhtml" x="7895" y="32" zoom="true"/>
+        <Node id="views/status/List.xhtml" x="7593" y="32" zoom="true"/>
+        <Node id="views/measurer/Edit.xhtml" x="1679" y="32" zoom="true"/>
+        <Node id="views/sapdetail/List.xhtml" x="9574" y="32" zoom="true"/>
+        <Node id="views/assigned/Create.xhtml" x="2001" y="32" zoom="true"/>
+        <Node id="views/measurer/Create.xhtml" x="6339" y="32" zoom="true"/>
+        <Node id="views/operator/Create.xhtml" x="3588" y="32" zoom="true"/>
+        <Node id="views/sapdetail/View.xhtml" x="8247" y="32" zoom="true"/>
+        <Node id="views/role/View.xhtml" x="14209" y="32" zoom="true"/>
+        <Node id="views/role/Edit.xhtml" x="18821" y="32" zoom="true"/>
+        <Node id="views/operator/View.xhtml" x="4848" y="32" zoom="true"/>
+        <Node id="views/operator/Edit.xhtml" x="8907" y="32" zoom="true"/>
+        <Node id="views/sapdetail/Edit.xhtml" x="19421" y="32" zoom="true"/>
+        <Node id="views/village/Create.xhtml" x="7274" y="32" zoom="true"/>
+        <Node id="views/role/List.xhtml" x="15409" y="32" zoom="true"/>
+        <Node id="views/uptake/Create.xhtml" x="15953" y="32" zoom="true"/>
+        <Node id="views/uptake/Edit.xhtml" x="16275" y="32" zoom="true"/>
+        <Node id="template.xhtml" x="15697" y="32" zoom="true"/>
+        <Node id="views/anotherservicedetail/Edit.xhtml" x="1296" y="32" zoom="true"/>
+        <Node id="views/anotherservicedetail/View.xhtml" x="11470" y="32" zoom="true"/>
+        <Node id="views/anotherservice/List.xhtml" x="9222" y="32" zoom="true"/>
+        <Node id="views/sap/View.xhtml" x="5716" y="32" zoom="true"/>
+        <Node id="views/status/Edit.xhtml" x="18194" y="32" zoom="true"/>
+        <Node id="views/measurer/List.xhtml" x="690" y="32" zoom="true"/>
+        <Node id="pageError404.xhtml" x="1012" y="32" zoom="true"/>
+        <Node id="views/entity/View.xhtml" x="19739" y="32" zoom="true"/>
+        <Node id="views/assigned/Edit.xhtml" x="2336" y="32" zoom="true"/>
+        <Node id="views/role/Create.xhtml" x="2960" y="32" zoom="true"/>
+        <Node id="views/sap/List.xhtml" x="17596" y="32" zoom="true"/>
+        <Node id="views/measurer/View.xhtml" x="6010" y="32" zoom="true"/>
+        <Node id="views/operator/List.xhtml" x="13581" y="32" zoom="true"/>
+        <Node id="views/anotherservice/View.xhtml" x="34" y="32" zoom="true"/>
+        <Node id="views/beneficiary/Edit.xhtml" x="12547" y="32" zoom="true"/>
+        <Node id="views/audit/Create.xhtml" x="17883" y="32" zoom="true"/>
+        <Node id="views/anotherservice/Create.xhtml" x="13212" y="32" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

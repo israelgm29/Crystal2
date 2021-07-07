@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateInvoiceTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateInvoiceLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{invoiceController.selected.id}" title="#{bundle.CreateInvoiceTitle_id}" required="true" requiredMessage="#{bundle.CreateInvoiceRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateInvoiceLabel_number}" for="number" />
+                    <h:inputText id="number" value="#{invoiceController.selected.number}" title="#{bundle.CreateInvoiceTitle_number}" required="true" requiredMessage="#{bundle.CreateInvoiceRequiredMessage_number}"/>
+                    <h:outputLabel value="#{bundle.CreateInvoiceLabel_dateofissue}" for="dateofissue" />
+                    <h:inputText id="dateofissue" value="#{invoiceController.selected.dateofissue}" title="#{bundle.CreateInvoiceTitle_dateofissue}" required="true" requiredMessage="#{bundle.CreateInvoiceRequiredMessage_dateofissue}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateInvoiceLabel_totaltopay}" for="totaltopay" />
+                    <h:inputText id="totaltopay" value="#{invoiceController.selected.totaltopay}" title="#{bundle.CreateInvoiceTitle_totaltopay}" required="true" requiredMessage="#{bundle.CreateInvoiceRequiredMessage_totaltopay}"/>
+                    <h:outputLabel value="#{bundle.CreateInvoiceLabel_payed}" for="payed" />
+                    <h:inputText id="payed" value="#{invoiceController.selected.payed}" title="#{bundle.CreateInvoiceTitle_payed}" required="true" requiredMessage="#{bundle.CreateInvoiceRequiredMessage_payed}"/>
+                    <h:outputLabel value="#{bundle.CreateInvoiceLabel_beneficiaryid}" for="beneficiaryid" />
+                    <h:selectOneMenu id="beneficiaryid" value="#{invoiceController.selected.beneficiaryid}" title="#{bundle.CreateInvoiceTitle_beneficiaryid}" required="true" requiredMessage="#{bundle.CreateInvoiceRequiredMessage_beneficiaryid}">
+                        <f:selectItems value="#{beneficiaryController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateInvoiceLabel_debtcollectorid}" for="debtcollectorid" />
+                    <h:selectOneMenu id="debtcollectorid" value="#{invoiceController.selected.debtcollectorid}" title="#{bundle.CreateInvoiceTitle_debtcollectorid}" required="true" requiredMessage="#{bundle.CreateInvoiceRequiredMessage_debtcollectorid}">
+                        <f:selectItems value="#{operatorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{invoiceController.create}" value="#{bundle.CreateInvoiceSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{invoiceController.prepareList}" value="#{bundle.CreateInvoiceShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateInvoiceIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

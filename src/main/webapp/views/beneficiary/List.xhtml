@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListBeneficiaryTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="row">
+                <div class="col-12 col-md-3">
+                    <h:form>
+                        <div class="card rounded-3 ">
+                            <h6 class="card-header bg-danger text-light">#{bundle.CreateBeneficiaryTitle}</h6>
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-6 ">
+                                        <label for="exampleDataList" class="form-label">Nombres</label>
+                                        <h:inputText  class="form-control form-control-sm" id="firstname" value="#{beneficiaryController.selected.firstname}" title="#{bundle.CreateBeneficiaryTitle_firstname}" required="true" requiredMessage="#{bundle.CreateBeneficiaryRequiredMessage_firstname}"/> 
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="exampleDataList" class="form-label">Apellidos</label>
+                                        <h:inputText  class="form-control form-control-sm" id="lastname" value="#{beneficiaryController.selected.lastname}" title="#{bundle.CreateBeneficiaryTitle_lastname}" required="true" requiredMessage="#{bundle.CreateBeneficiaryRequiredMessage_lastname}"/>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="exampleDataList" class="form-label">Cédula</label>
+                                        <h:inputText class="form-control form-control-sm" id="dni" value="#{beneficiaryController.selected.dni}" title="#{bundle.CreateBeneficiaryTitle_dni}" required="true" requiredMessage="#{bundle.CreateBeneficiaryRequiredMessage_dni}"/>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="exampleDataList" class="form-label">Teléfono</label>
+                                        <h:inputText  class="form-control form-control-sm" id="telephone" value="#{beneficiaryController.selected.telephone}" title="#{bundle.CreateBeneficiaryTitle_telephone}" />
+                                    </div>
+                                </div>
+                                <label for="exampleDataList" class="form-label">Dirección</label>
+                                <h:inputText  class="form-control form-control-sm" id="address" value="#{beneficiaryController.selected.address}" title="#{bundle.CreateBeneficiaryTitle_address}" required="true" requiredMessage="#{bundle.CreateBeneficiaryRequiredMessage_address}"/>
+                                <label for="exampleDataList" class="form-label">Referencia</label>
+                                <h:inputText  class="form-control form-control-sm" id="placereference" value="#{beneficiaryController.selected.placereference}" title="#{bundle.CreateBeneficiaryTitle_placereference}" />
+                                <label for="exampleDataList" class="form-label">Barrio</label>
+
+                                <h:selectOneMenu class="form-select form-select-sm" id="villageid" value="#{beneficiaryController.selected.villageid}" title="#{bundle.CreateBeneficiaryTitle_villageid}" required="true" requiredMessage="#{bundle.CreateBeneficiaryRequiredMessage_villageid}">
+                                    <f:selectItems value="#{villageController.itemsAvailableSelectOne}"/>
+                                </h:selectOneMenu>
+
+                            </div>
+                            <div class="card-footer ">
+                                <h:commandLink class=" btn btn-danger" action="#{beneficiaryController.create}" value="#{bundle.CreateBeneficiarySaveLink}">
+                                    <i class="far fa-save fa-lg"></i>
+                                </h:commandLink>
+
+                                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+                                    Cancelar
+                                </button>
+                            </div>
+                        </div>
+
+                    </h:form>
+                </div>
+                <div class="col-12 col-md-9">
+                    <div class="card rounded-3 ">
+                        <h6 class="card-header bg-danger text-light">#{bundle.ListBeneficiaryTitle}</h6>
+                        <div class="card-body ">
+                            <h:form >
+                                <h:panelGroup id="messagePanel" layout="block">
+                                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                                </h:panelGroup>
+                                <h:outputText escape="false" value="#{bundle.ListBeneficiaryEmpty}" rendered="#{beneficiaryController.items.rowCount == 0}"/>
+                                <h:panelGroup rendered="#{beneficiaryController.items.rowCount > 0}">
+                                    <table id="example" class="table table-striped display responsive nowrap" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Cédula</th>
+                                                <th>Apellidos</th>
+                                                <th>Nombres</th>
+                                                <th>Telefono</th>
+                                                <th>Direccion</th>
+                                                <th>Referencia</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <ui:repeat value="#{beneficiaryController.items}" var="item">
+                                                <tr class="text-capitalize">
+                                                    <td> <h:outputText value="#{item.id}"/></td>
+                                                    <td><h:outputText value="#{item.dni}"/></td>
+                                                    <td><h:outputText value="#{item.lastname}"/></td>
+                                                    <td><h:outputText value="#{item.firstname}"/></td>
+                                                    <td><h:outputText value="#{item.telephone}"/></td>
+                                                    <td> <h:outputText value="#{item.address}"/></td>
+                                                    <td><h:outputText value="#{item.placereference}"/></td>
+                                                    <td><h:commandLink action="#{beneficiaryController.prepareView}">
+                                                            <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Detalles">
+                                                                <span class="text-danger fa fa-eye"/>
+                                                            </span>
+                                                            <f:actionListener binding="#{assignedController.getAssignedByBeneficiary(item.id)}" />
+                                                        </h:commandLink>
+                                                        <h:outputText value=" "/>
+                                                        <h:commandLink action="#{beneficiaryController.prepareEdit}">
+                                                            <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Editar">
+                                                                <span class="text-dark  far fa-edit" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"></span>
+                                                            </span>
+                                                        </h:commandLink>
+                                                        <h:outputText value=" "/>
+                                                        <h:commandLink action="#{beneficiaryController.destroy}">
+                                                            <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Eliminar">
+                                                                <span class="text-danger fas fa-trash"/>
+                                                            </span>
+                                                        </h:commandLink>
+
+                                                    </td>
+                                                </tr>
+                                            </ui:repeat>
+                                        </tbody>
+                                    </table>
+                                </h:panelGroup>
+
+                            </h:form>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+        </ui:define>
+    </ui:composition>
+
+</html>

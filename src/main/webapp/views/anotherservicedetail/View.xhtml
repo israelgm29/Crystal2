@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewAnotherservicedetailTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewAnotherservicedetailLabel_anotherservicedetailPK_id}"/>
+                    <h:outputText value="#{anotherservicedetailController.selected.anotherservicedetailPK.id}" title="#{bundle.ViewAnotherservicedetailTitle_anotherservicedetailPK_id}"/>
+                    <h:outputText value="#{bundle.ViewAnotherservicedetailLabel_price}"/>
+                    <h:outputText value="#{anotherservicedetailController.selected.price}" title="#{bundle.ViewAnotherservicedetailTitle_price}"/>
+                    <h:outputText value="#{bundle.ViewAnotherservicedetailLabel_anotherservice}"/>
+                    <h:outputText value="#{anotherservicedetailController.selected.anotherservice}" title="#{bundle.ViewAnotherservicedetailTitle_anotherservice}"/>
+                    <h:outputText value="#{bundle.ViewAnotherservicedetailLabel_invoice}"/>
+                    <h:outputText value="#{anotherservicedetailController.selected.invoice}" title="#{bundle.ViewAnotherservicedetailTitle_invoice}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{anotherservicedetailController.destroyAndView}" value="#{bundle.ViewAnotherservicedetailDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewAnotherservicedetailEditLink}"/>
+                <br />
+                <h:commandLink action="#{anotherservicedetailController.prepareCreate}" value="#{bundle.ViewAnotherservicedetailCreateLink}" />
+                <br />
+                <h:commandLink action="#{anotherservicedetailController.prepareList}" value="#{bundle.ViewAnotherservicedetailShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewAnotherservicedetailIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

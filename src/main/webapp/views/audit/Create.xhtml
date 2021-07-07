@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAuditTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAuditLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{auditController.selected.id}" title="#{bundle.CreateAuditTitle_id}" required="true" requiredMessage="#{bundle.CreateAuditRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateAuditLabel_executeddate}" for="executeddate" />
+                    <h:inputText id="executeddate" value="#{auditController.selected.executeddate}" title="#{bundle.CreateAuditTitle_executeddate}" required="true" requiredMessage="#{bundle.CreateAuditRequiredMessage_executeddate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateAuditLabel_tableaffected}" for="tableaffected" />
+                    <h:inputText id="tableaffected" value="#{auditController.selected.tableaffected}" title="#{bundle.CreateAuditTitle_tableaffected}" required="true" requiredMessage="#{bundle.CreateAuditRequiredMessage_tableaffected}"/>
+                    <h:outputLabel value="#{bundle.CreateAuditLabel_actionname}" for="actionname" />
+                    <h:inputText id="actionname" value="#{auditController.selected.actionname}" title="#{bundle.CreateAuditTitle_actionname}" required="true" requiredMessage="#{bundle.CreateAuditRequiredMessage_actionname}"/>
+                    <h:outputLabel value="#{bundle.CreateAuditLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{auditController.selected.description}" title="#{bundle.CreateAuditTitle_description}" />
+                    <h:outputLabel value="#{bundle.CreateAuditLabel_operatorid}" for="operatorid" />
+                    <h:selectOneMenu id="operatorid" value="#{auditController.selected.operatorid}" title="#{bundle.CreateAuditTitle_operatorid}" required="true" requiredMessage="#{bundle.CreateAuditRequiredMessage_operatorid}">
+                        <f:selectItems value="#{operatorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{auditController.create}" value="#{bundle.CreateAuditSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{auditController.prepareList}" value="#{bundle.CreateAuditShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAuditIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

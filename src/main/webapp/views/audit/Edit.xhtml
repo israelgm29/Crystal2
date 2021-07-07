@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAuditTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAuditLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{auditController.selected.id}" title="#{bundle.EditAuditTitle_id}" required="true" requiredMessage="#{bundle.EditAuditRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditAuditLabel_executeddate}" for="executeddate" />
+                    <h:inputText id="executeddate" value="#{auditController.selected.executeddate}" title="#{bundle.EditAuditTitle_executeddate}" required="true" requiredMessage="#{bundle.EditAuditRequiredMessage_executeddate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditAuditLabel_tableaffected}" for="tableaffected" />
+                    <h:inputText id="tableaffected" value="#{auditController.selected.tableaffected}" title="#{bundle.EditAuditTitle_tableaffected}" required="true" requiredMessage="#{bundle.EditAuditRequiredMessage_tableaffected}"/>
+                    <h:outputLabel value="#{bundle.EditAuditLabel_actionname}" for="actionname" />
+                    <h:inputText id="actionname" value="#{auditController.selected.actionname}" title="#{bundle.EditAuditTitle_actionname}" required="true" requiredMessage="#{bundle.EditAuditRequiredMessage_actionname}"/>
+                    <h:outputLabel value="#{bundle.EditAuditLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{auditController.selected.description}" title="#{bundle.EditAuditTitle_description}" />
+                    <h:outputLabel value="#{bundle.EditAuditLabel_operatorid}" for="operatorid" />
+                    <h:selectOneMenu id="operatorid" value="#{auditController.selected.operatorid}" title="#{bundle.EditAuditTitle_operatorid}" required="true" requiredMessage="#{bundle.EditAuditRequiredMessage_operatorid}">
+                        <f:selectItems value="#{operatorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{auditController.update}" value="#{bundle.EditAuditSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAuditViewLink}"/>
+                <br />
+                <h:commandLink action="#{auditController.prepareList}" value="#{bundle.EditAuditShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAuditIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

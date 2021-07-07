@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="responsive.bootstrap5.css"/>
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <h:outputStylesheet library="css" name="dataTables.bootstrap5.min.css"/>
+        <h:outputStylesheet library="css" name="flatpickr.min.css"/>   
+        <h:outputStylesheet library="css" name="tom-select.bootstrap5.css"/>
+        <h:outputScript library="js" name="chart.min.js"/>
+    </h:head>
+
+    <h:body>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-secondary" >
+            <div class="container-fluid">
+                <a class="navbar-brand">
+                    <h:graphicImage   width="60" height="60" value="#{resource['images/logoLog.png']}"/> 
+                    <span>Crystal</span>
+                </a>
+                <hr class=""></hr>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-home fa-lg"/> Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <h:link class="nav-link" outcome="/views/invoice/List">
+                                <i class="fas fa-file-invoice-dollar fa-lg"/> Facturas
+                            </h:link>
+                        </li>
+                        <li class="nav-item">
+                            <h:link class="nav-link" outcome="/views/operator/List" >
+                                <i class="fas fa-users fa-lg"/> Usuarios del Sistema
+                            </h:link>
+                        </li>
+                        <li class="nav-item">
+                            <h:link class="nav-link" outcome="/views/beneficiary/List" >
+                                <i class="fas fa-people-carry fa-lg"/> Beneficiarios
+                            </h:link>
+                        </li>
+
+                        <li class="nav-item dropstart">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-tachometer-alt fa-lg"/> Medidores
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><h:link class="dropdown-item" outcome="/views/measurer/List" >
+                                        <i class="fas fa-tachometer-alt fa-lg"/> Todos los Medidores
+                                    </h:link></li>
+                                <li><h:link class="dropdown-item" outcome="/views/assigned/List">
+                                        <i class="far fa-handshake fa-lg"/> Asignación de Medidores
+                                    </h:link></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <h:link class="nav-link" outcome="/views/uptake/List">
+                                <i class="fab fa-creative-commons-sampling fa-lg"/> Lecturas de medidor
+                            </h:link>
+                        </li>
+
+                        <li class="nav-item dropstart">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-hand-holding-water fa-lg"></i> Servicios de Agua Potable 
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><h:link class="dropdown-item" outcome="/views/sap/List" >
+                                        <i class="fas fa-hand-holding-water fa-lg"/> Servicios
+                                    </h:link></li>
+                                <li><hr class="dropdown-divider"/></li>
+                                <li><h:link class="dropdown-item" outcome="/views/anotherservice/List">
+                                        <i class="fas fa-bullhorn fa-lg"/> Otros Servicios
+                                    </h:link></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropstart">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><hr class="dropdown-divider"/></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <h4>
+                <ui:insert name="title">Default Title</ui:insert>
+            </h4>
+            <p>
+                <ui:insert name="body">Default Body</ui:insert>
+            </p>
+
+        </div>
+
+        <h:outputScript library="js" name="jquery-3.5.1.js"/>
+        <h:outputScript library="js" name="jquery.dataTables.min.js"/>
+        <h:outputScript library="js" name="datatables.js"/>
+        <h:outputScript library="js" name="responsive.bootstrap5.js"/>
+        <h:outputScript library="js" name="bootstrap.min.js"/>
+        <h:outputScript library="js" name="popper.min.js"/>
+        <h:outputScript library="js" name="all.js"/>
+        <h:outputScript library="js" name="dataTables.bootstrap5.js"/>
+        <h:outputScript library="js" name="flatpickr.js"/>
+        <h:outputScript library="js" name="tom-select.complete.min.js"/>
+        <h:outputScript library="js" name="dropdown_input.js"/>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        
+        <script>
+            flatpickr("#myInput", {});
+
+            var table = $('#example').DataTable();
+
+            new $.fn.dataTable.Responsive(table, {
+                details: false
+            });
+
+        </script>
+        <script type="text/javascript">
+            new TomSelect('#ex-dropdown-input',
+                    {
+                        plugins: ['dropdown_input'],
+                    });
+            new TomSelect('#ex-dropdown',
+                    {
+                        plugins: ['dropdown_input'],
+                    });
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+
+        </script>
+    </h:body>
+
+</html>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAnotherserviceTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListAnotherserviceEmpty}" rendered="#{anotherserviceController.items.rowCount == 0}"/>
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="card rounded-3 ">
+                        <h6 class="card-header bg-danger text-light">Añadir nuevo servicio</h6>
+                        <div class="card-body ">
+                            <h:form id="other_service" >
+                                <div class="mb-3 ">
+                                    <label for="inputPassword" class="form-label">#{bundle.CreateAnotherserviceLabel_name}</label>
+                                    <div class="col-12 col-md-12">
+                                        <h:inputText class="form-control form-control-sm" a:placeholder="Ejemplo Multas"  id="name" value="#{anotherserviceController.selected.name}" title="#{bundle.CreateAnotherserviceTitle_name}" required="true" requiredMessage="#{bundle.CreateAnotherserviceRequiredMessage_name}"/>
+                                    </div>
+                                </div>
+                                <div class="mb-3 ">
+                                    <label for="inputPassword" class="form-label">#{bundle.CreateAnotherserviceLabel_price}</label>
+                                    <div class="col-md-12">
+                                        <h:inputText class="form-control form-control-sm" a:type="number" a:placeholder="$ 10.5" a:step="0.1"  a:min="1" a:max="30" a:required="required"  id="price" value="#{anotherserviceController.selected.price}" title="#{bundle.CreateAnotherserviceTitle_price}"/>
+                                        
+                                    </div>
+                                </div>
+                                <br />
+                                <h:commandLink class="btn btn-danger" action="#{anotherserviceController.create}" value="#{bundle.CreateAnotherserviceSaveLink}" />
+                                <button class="btn btn-outline-secondary" type='reset' value="reset">
+                                    <span class="btn-label"><i class="text-danger fas fa-times"></i></span> Cancelar
+                                </button>
+
+                            </h:form>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 pt-2 col-md-7 pt-md-0">
+                    <div class="card rounded-3 ">
+                        <h6 class="card-header bg-danger text-light">Lista de Servicios</h6>
+                        <div class="card-body ">
+                            <h:form >
+                                <table id="example" class="table table-striped display responsive nowrap" style="width:100%">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Servicio</th>
+                                            <th>Precio de Servicio</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ui:repeat value="#{anotherserviceController.items}" var="item">
+                                            <tr class="text-capitalize text-center">
+                                                <td><h:outputText value="#{item.id}"/></td>
+                                                <td><h:outputText value="#{item.name}"/></td>
+                                                <td><h:outputText value="$ #{item.price}"/></td>
+                                                <td> <h:commandLink  action="#{anotherserviceController.prepareView}">
+                                                        <span class="uk-icon-button uk-margin-small-right uk-text-primary fa fa-eye" uk-tooltip="Ver"></span>
+                                                    </h:commandLink>
+                                                    <h:outputText value=" "/>
+                                                    <h:commandLink action="#{anotherserviceController.prepareEdit}">
+                                                        <span class="uk-icon-button uk-margin-small-right uk-text-emphasis far fa-edit" uk-tooltip="Editar"></span>
+                                                    </h:commandLink>
+                                                    <h:outputText value=" "/>
+                                                    <h:commandLink action="#{anotherserviceController.destroy()}">
+                                                        <span class="uk-icon-button uk-margin-small-right uk-text-danger fas fa-trash" uk-tooltip="Eliminar"></span>
+                                                    </h:commandLink>
+                                                </td>
+                                            </tr>
+                                        </ui:repeat>
+                                    </tbody>
+                                </table>
+                            </h:form>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <script>
+                function limpiarForm()
+                {
+                    document.getElementById("other_service").reset();
+                }
+            </script>
+        </ui:define>
+    </ui:composition>
+
+</html>

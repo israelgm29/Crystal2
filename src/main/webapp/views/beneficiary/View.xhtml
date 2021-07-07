@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewBeneficiaryTitle} "></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <div class="row">
+                <div class="col">
+                    <h:form>
+                        <h:panelGrid columns="2" cellpadding="2" cellspacing="2">
+                            <h:outputText value="#{bundle.ViewBeneficiaryLabel_id}"/>
+                            <h:outputText id="id" value="#{beneficiaryController.selected.id}" title="#{bundle.ViewBeneficiaryTitle_id}"/>
+                            <h:outputText value="#{bundle.ViewBeneficiaryLabel_dni}"/>
+                            <h:outputText value="#{beneficiaryController.selected.dni}" title="#{bundle.ViewBeneficiaryTitle_dni}"/>
+                            <h:outputText value="#{bundle.ViewBeneficiaryLabel_lastname}"/>
+                            <h:outputText value="#{beneficiaryController.selected.lastname}" title="#{bundle.ViewBeneficiaryTitle_lastname}"/>
+                            <h:outputText value="#{bundle.ViewBeneficiaryLabel_firstname}"/>
+                            <h:outputText value="#{beneficiaryController.selected.firstname}" title="#{bundle.ViewBeneficiaryTitle_firstname}"/>
+                            <h:outputText value="#{bundle.ViewBeneficiaryLabel_telephone}"/>
+                            <h:outputText value="#{beneficiaryController.selected.telephone}" title="#{bundle.ViewBeneficiaryTitle_telephone}"/>
+                            <h:outputText value="#{bundle.ViewBeneficiaryLabel_address}"/>
+                            <h:outputText value="#{beneficiaryController.selected.address}" title="#{bundle.ViewBeneficiaryTitle_address}"/>
+                            <h:outputText value="#{bundle.ViewBeneficiaryLabel_placereference}"/>
+                            <h:outputText value="#{beneficiaryController.selected.placereference}" title="#{bundle.ViewBeneficiaryTitle_placereference}"/>
+                            <h:outputText value="#{bundle.ViewBeneficiaryLabel_villageid}"/>
+                            <h:outputText value="#{beneficiaryController.selected.villageid.name}" title="#{bundle.ViewBeneficiaryTitle_villageid}"/>
+                        </h:panelGrid>
+                        <br />
+                        <br />
+                        <h:commandLink action="#{beneficiaryController.prepareCreate}" value="#{bundle.ViewBeneficiaryCreateLink}" />
+                        <br />
+                        <h:commandLink action="#{beneficiaryController.prepareList}" value="#{bundle.ViewBeneficiaryShowAllLink}"/>
+                    </h:form>
+
+                </div>
+                <div class="col" rendered="#{not empty dato}">
+                    <h:form id="account">
+                        <h3>Medidor de Agua Potable</h3>
+                        <h:panelGrid columns="2">
+                            <h:outputText value="#{bundle.ViewAssignedLabel_debt}"/>
+                            <h:outputText value="$ #{dato.debt}"/>
+                            <h:outputText value="#{bundle.ViewAssignedLabel_assignmentdate}"/>
+                            <h:outputText id="fecha" value="#{dato.assignmentdate}" title="#{bundle.ViewAssignedTitle_assignmentdate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="#{bundle.ViewAssignedLabel_status}"/>
+                            <h:outputText value="#{dato.status}" title="#{bundle.ViewAssignedTitle_status}"/><h:outputText value="#{bundle.ViewAssignedLabel_measurer}"/>
+                            <h:outputText id="data" value="#{dato.measurer}" title="#{bundle.ViewAssignedTitle_measurer}"/>
+
+                        </h:panelGrid>
+                    </h:form>
+                    <f:view>
+                        <h:form id="account2">
+                            <h:inputText  class="form-control form-control-sm bg-transparent border-white" id="measurer" converter="#{Double}" value="#{dato.measurer}"/>
+                            <h:commandLink class="btn btn-danger btn-sm" value="#{uptakeController.getUptakeByMeasurerId(param['account2:measurer'])}"  />
+                        </h:form>
+                    </f:view>
+                </div>
+                <div class="col" rendered="#{not empty uptakeData}">
+                    <h3>Estadística de Consumo</h3>
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+
+            <script>
+                let myCanvas = document.getElementById("myChart").getContext("2d");
+                var myChart = new Chart(myCanvas, {
+                    type: "bar",
+                    data: {
+                        labels: ["Consumo ", "Deuda"],
+                        datasets: [
+                            {
+                                backgroundColor: ['rgba(75, 192, 192, 0.2)',
+                                    'rgba(255, 99, 132, 0.2)'
+                                ],
+                                data: ['#{uptakeData.volumeconsumed}', '#{dato.debt}']
+                            }
+                        ]
+                    },
+                    options: {
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Datos de Medidor N°#{dato.measurer} '
+                            }
+                        }
+                    }
+                }
+                );
+            </script>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

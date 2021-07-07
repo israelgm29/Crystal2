@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditSapTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditSapLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{sapController.selected.id}" title="#{bundle.EditSapTitle_id}" required="true" requiredMessage="#{bundle.EditSapRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditSapLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{sapController.selected.name}" title="#{bundle.EditSapTitle_name}" required="true" requiredMessage="#{bundle.EditSapRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.EditSapLabel_basevolume}" for="basevolume" />
+                    <h:inputText id="basevolume" value="#{sapController.selected.basevolume}" title="#{bundle.EditSapTitle_basevolume}" required="true" requiredMessage="#{bundle.EditSapRequiredMessage_basevolume}"/>
+                    <h:outputLabel value="#{bundle.EditSapLabel_baseprice}" for="baseprice" />
+                    <h:inputText id="baseprice" value="#{sapController.selected.baseprice}" title="#{bundle.EditSapTitle_baseprice}" required="true" requiredMessage="#{bundle.EditSapRequiredMessage_baseprice}"/>
+                    <h:outputLabel value="#{bundle.EditSapLabel_extraprice}" for="extraprice" />
+                    <h:inputText id="extraprice" value="#{sapController.selected.extraprice}" title="#{bundle.EditSapTitle_extraprice}" required="true" requiredMessage="#{bundle.EditSapRequiredMessage_extraprice}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{sapController.update}" value="#{bundle.EditSapSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditSapViewLink}"/>
+                <br />
+                <h:commandLink action="#{sapController.prepareList}" value="#{bundle.EditSapShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditSapIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
