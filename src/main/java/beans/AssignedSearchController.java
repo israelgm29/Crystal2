@@ -7,6 +7,7 @@ package beans;
 
 import entidades.Assigned;
 import entidades.Beneficiary;
+import entidades.Measurer;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -25,9 +26,11 @@ public class AssignedSearchController implements Serializable {
     private Assigned current;
     private Beneficiary beneficiary;
     @EJB
-    private AssignedFacade facade;
+    private AssignedFacade assignedFacade;
     @EJB
     private BeneficiaryFacade beneficiaryFacade;
+    @EJB
+    private MeasurerFacade measurerFacade;
 
     public AssignedSearchController() {
     }
@@ -68,11 +71,11 @@ public class AssignedSearchController implements Serializable {
         }
 
     }
-    
-     public void buscarNuevoAsignado() {
+
+    public void buscarNuevoAsignado() {
         System.out.println("El id entrante es" + current.getBeneficiary().getId() + "");
-      
-      Beneficiary beneficiary = beneficiaryFacade.findBeneficiaryByID(current.getBeneficiary().getId());
+
+        Beneficiary beneficiary = beneficiaryFacade.findBeneficiaryByID(current.getBeneficiary().getId());
 //
         if (beneficiary != null) {
             FacesContext context2 = FacesContext.getCurrentInstance();
@@ -80,20 +83,21 @@ public class AssignedSearchController implements Serializable {
         }
 
     }
+
     public void buscarMedidorBeneficiario() {
         try {
-            List<Assigned> measurer = facade.findMeasurerByBeneficiary(current.getBeneficiary().getId());
+            List<Assigned> measurer = assignedFacade.findMeasurerByBeneficiary(current.getBeneficiary().getId());
             System.out.println("El id entrante es" + current.getBeneficiary().getId() + "");
             System.out.println(measurer.size());
             FacesContext context = FacesContext.getCurrentInstance();
             if (measurer.size() > 0) {
 
                 context.getExternalContext().getSessionMap().put("currentmeasurer", measurer);
-             
+
             } else {
                 measurer = null;
-                 FacesContext context3 = FacesContext.getCurrentInstance();
-                 context3.getExternalContext().getSessionMap().put("currentmeasurer", measurer);
+                FacesContext context3 = FacesContext.getCurrentInstance();
+                context3.getExternalContext().getSessionMap().put("currentmeasurer", measurer);
                 context.getPartialViewContext().getEvalScripts().add(" swal({\n"
                         + "                    title: \"Atencion\",\n"
                         + "                    icon: \"info\",\n"
@@ -101,7 +105,7 @@ public class AssignedSearchController implements Serializable {
                         + "                    buttons: true,\n"
                         + "                    dangerMode: true,\n"
                         + "                });");
-               
+
             }
         } catch (Exception e) {
             System.err.println(e);
@@ -109,5 +113,10 @@ public class AssignedSearchController implements Serializable {
 
     }
 
-   
+    public List allMeasurerAvalible() {
+
+        List<Measurer> measurers = measurerFacade.findEnableMeasurer();
+       return measurers;
+
+    }
 }

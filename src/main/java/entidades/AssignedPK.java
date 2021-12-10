@@ -9,6 +9,9 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -18,6 +21,7 @@ import javax.validation.constraints.NotNull;
 @Embeddable
 public class AssignedPK implements Serializable {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private int id;
@@ -95,5 +99,5 @@ public class AssignedPK implements Serializable {
     public String toString() {
         return "entidades.AssignedPK[ id=" + id + ", beneficiaryid=" + beneficiaryid + ", measurerid=" + measurerid + " ]";
     }
-    
+
 }

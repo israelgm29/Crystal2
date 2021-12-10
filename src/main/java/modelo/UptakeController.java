@@ -192,27 +192,24 @@ public class UptakeController implements Serializable {
         return ejbFacade.find(id);
     }
 
-    public String getUptakeByMeasurerId(int id) {
+    public void getUptakeByMeasurerId(int id) {
         FacesContext context = FacesContext.getCurrentInstance();
-        try {
+      
 
             Uptake u = new Uptake();
             current = getFacade().findByMeasureId(id);
 
-            if (current != null) {
-                context.getExternalContext().getSessionMap().put("uptakeData", current);
+            if (current.equals(null)) {
+                context.getPartialViewContext().getEvalScripts().add(" swal({\n"
+                        + "                    title: \"Atencion\",\n"
+                        + "                    icon: \"info\",\n"
+                        + "                    text: \" El Usuario seleccionado no tiene ningun medidor\",\n"
+                        + "                    buttons: true,\n"
+                        + "                    dangerMode: true,\n"
+                        + "                });");
+            } 
 
-                JsfUtil.addSuccessMessage("Hostia Tio");
-                return prepareView();
-            } else {
-             
-                return "View";
-            }
-
-        } catch (Exception e) {
-            System.out.println(e);
-            return null;
-        }
+      
     }
 
     @FacesConverter(forClass = Uptake.class)

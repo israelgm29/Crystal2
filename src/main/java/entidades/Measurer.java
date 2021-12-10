@@ -37,7 +37,9 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Measurer.findAll", query = "SELECT m FROM Measurer m"),
     @NamedQuery(name = "Measurer.findById", query = "SELECT m FROM Measurer m WHERE m.id = :id"),
     @NamedQuery(name = "Measurer.findByNumber", query = "SELECT m FROM Measurer m WHERE m.number = :number"),
+    @NamedQuery(name = "Meausrer.findByStatus", query = "SELECT m.number FROM Measurer m WHERE m.statusid = :statusid"),
     @NamedQuery(name = "Measurer.findByInstallationdate", query = "SELECT m FROM Measurer m WHERE m.installationdate = :installationdate")})
+    
 public class Measurer implements Serializable {
 
     private static final long serialVersionUID = 1L;

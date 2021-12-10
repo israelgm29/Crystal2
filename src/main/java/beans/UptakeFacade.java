@@ -33,8 +33,8 @@ public class UptakeFacade extends AbstractFacade<Uptake> {
     }
 
     public Uptake findByMeasureId(int id) {
-        String sql = "SELECT * FROM uptake WHERE measurerid =" + id + ";";
-        Query query = em.createNativeQuery(sql, Uptake.class);
+        Query query = em.createNativeQuery("SELECT * FROM uptake WHERE measurerid = ?;", Uptake.class)
+                .setParameter(1, id);
         List<Uptake> lista = query.getResultList();
         Uptake asd = null;
         if (!lista.isEmpty()) {

@@ -6,9 +6,13 @@
 package beans;
 
 import entidades.Measurer;
+import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +33,10 @@ public class MeasurerFacade extends AbstractFacade<Measurer> {
         super(Measurer.class);
     }
     
+    public List findEnableMeasurer(){
+        Query q  = (Query) em.createNativeQuery("SELECT id FROM Measurer  WHERE statusid = ?", Measurer.class).
+                setParameter(1, 4);
+                    
+        return q.getResultList();
+    }   
 }

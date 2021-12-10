@@ -36,5 +36,6 @@ public class BeneficiaryFacade extends AbstractFacade<Beneficiary> {
         System.out.println("El beneficiario encontado es "+b+"");
         return b;
     }
-
+    
+      
 }

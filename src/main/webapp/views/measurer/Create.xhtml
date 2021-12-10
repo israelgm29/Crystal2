@@ -11,39 +11,48 @@
             <h:outputText value="#{bundle.CreateMeasurerTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
+            <div class="row">
+                  <div class="col">
+                    <h:graphicImage    value="#{resource['images/measurer.png']}"/> 
+                </div>
+                <div class="col">
+                    <h3>Datos del Medidor</h3>
+                    <h:form prependId="false" >
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputLabel value="#{bundle.CreateMeasurerLabel_number}" for="number" />
+                            <h:inputText id="number" class="form-control" value="#{measurerController.selected.number}" title="#{bundle.CreateMeasurerTitle_number}" required="true" requiredMessage="#{bundle.CreateMeasurerRequiredMessage_number}"/>
+                            <h:outputLabel value="#{bundle.CreateMeasurerLabel_installationdate}" for="installationdate" />
+                            <h:inputText id="myInput" class=" active form-control form-control-sm"  pt:placeholder="Seleccionar Fecha" pt:readonly="readonly" value="#{measurerController.selected.installationdate}" title="#{bundle.CreateMeasurerTitle_installationdate}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:inputText>
+                            <h:outputLabel value="#{bundle.CreateMeasurerLabel_sapid}" for="sapid" />
+                            <h:selectOneMenu class="form-select" id="sapid" value="#{measurerController.selected.sapid}" title="#{bundle.CreateMeasurerTitle_sapid}" required="true" requiredMessage="#{bundle.CreateMeasurerRequiredMessage_sapid}">
+                                <f:selectItems value="#{sapController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="#{bundle.CreateMeasurerLabel_statusid}" for="statusid" />
+                            <h:selectOneMenu class="form-select" id="statusid" value="#{measurerController.selected.statusid}" title="#{bundle.CreateMeasurerTitle_statusid}" required="true" requiredMessage="#{bundle.CreateMeasurerRequiredMessage_statusid}">
+                                <f:selectItems value="#{statusController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
 
-            <h:form prependId="false" >
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateMeasurerLabel_number}" for="number" />
-                    <h:inputText id="number" value="#{measurerController.selected.number}" title="#{bundle.CreateMeasurerTitle_number}" required="true" requiredMessage="#{bundle.CreateMeasurerRequiredMessage_number}"/>
-                    <h:outputLabel value="#{bundle.CreateMeasurerLabel_installationdate}" for="installationdate" />
-                    <h:inputText id="myInput" class=" active form-control form-control-sm"  pt:placeholder="Seleccionar Fecha" pt:readonly="readonly" value="#{measurerController.selected.installationdate}" title="#{bundle.CreateMeasurerTitle_installationdate}">
-                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateMeasurerLabel_sapid}" for="sapid" />
-                    <h:selectOneMenu class="form-select" id="sapid" value="#{measurerController.selected.sapid}" title="#{bundle.CreateMeasurerTitle_sapid}" required="true" requiredMessage="#{bundle.CreateMeasurerRequiredMessage_sapid}">
-                        <f:selectItems value="#{sapController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateMeasurerLabel_statusid}" for="statusid" />
-                    <h:selectOneMenu class="form-select" id="statusid" value="#{measurerController.selected.statusid}" title="#{bundle.CreateMeasurerTitle_statusid}" required="true" requiredMessage="#{bundle.CreateMeasurerRequiredMessage_statusid}">
-                        <f:selectItems value="#{statusController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                        </h:panelGrid>
+                        <br />
+                        <h:commandLink class="btn btn-danger" action="#{measurerController.create}" >
+                            <i class="ms-2 me-2 far fa-save"/>#{bundle.CreateMeasurerSaveLink}
 
-                </h:panelGrid>
-                <br />
-                <h:commandLink class="btn btn-danger" action="#{measurerController.create}" >
-                    <i class="ms-2 me-2 far fa-save"/>#{bundle.CreateMeasurerSaveLink}
-                    <f:actionListener binding="#{measurerController.prepareList()}"></f:actionListener>
-                </h:commandLink>
-                <h:commandLink class="ms-2 btn btn-outline-secondary" action="#{measurerController.prepareList}" immediate="true">
-                    <i class="ms-2 me-2 text-danger fas fa-times"/>#{bundle.CreateMeasurerShowAllLink}
-                </h:commandLink>
-            </h:form>
-          
-                        <h:panelGroup id="messagePanel" layout="block">
-                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                        </h:panelGroup>
-             
+                        </h:commandLink>
+                        <h:commandLink class="ms-2 btn btn-outline-secondary" action="#{measurerController.prepareList}" immediate="true">
+                            <i class="ms-2 me-2 text-danger fas fa-times"/>#{bundle.CreateMeasurerShowAllLink}
+                        </h:commandLink>
+                    </h:form>
+                </div>
+              
+            </div>
+
+
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+
         </ui:define>
     </ui:composition>
 

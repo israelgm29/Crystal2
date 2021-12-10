@@ -83,8 +83,8 @@ public class AssignedController implements Serializable {
 
     public String create() {
         try {
-            current.getAssignedPK().setMeasurerid(current.getMeasurer().getId());
             current.getAssignedPK().setBeneficiaryid(current.getBeneficiary().getId());
+            current.getAssignedPK().setMeasurerid(current.getMeasurer().getId());
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AssignedCreated"));
             return prepareCreate();
@@ -102,8 +102,8 @@ public class AssignedController implements Serializable {
 
     public String update() {
         try {
-            current.getAssignedPK().setMeasurerid(current.getMeasurer().getId());
             current.getAssignedPK().setBeneficiaryid(current.getBeneficiary().getId());
+            current.getAssignedPK().setMeasurerid(current.getMeasurer().getId());
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AssignedUpdated"));
             return "View";
@@ -196,9 +196,7 @@ public class AssignedController implements Serializable {
 
     public Assigned getAssigned(entidades.AssignedPK id) {
         return ejbFacade.find(id);
-
     }
-
 
     @FacesConverter(forClass = Assigned.class)
     public static class AssignedControllerConverter implements Converter {
@@ -252,3 +250,4 @@ public class AssignedController implements Serializable {
     }
 
 }
+

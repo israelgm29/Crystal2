@@ -37,7 +37,7 @@ public class BeneficiaryController implements Serializable {
         if (current == null) {
             current = new Beneficiary();
             selectedItemIndex = -1;
-             
+
         }
         return current;
     }
@@ -66,7 +66,7 @@ public class BeneficiaryController implements Serializable {
 
     public String prepareList() {
         recreateModel();
-        current=null;
+        current = null;
         return "List";
     }
 
@@ -116,7 +116,7 @@ public class BeneficiaryController implements Serializable {
         performDestroy();
         recreatePagination();
         recreateModel();
-        current=null;
+        current = null;
         return "List";
     }
 
@@ -191,13 +191,21 @@ public class BeneficiaryController implements Serializable {
     public SelectItem[] getItemsAvailableSelectOne() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
-     public List<Beneficiary> getAllBeneficier() {
+
+    public List<Beneficiary> getAllBeneficier() {
         return ejbFacade.findAll();
     }
+
     public Beneficiary getBeneficiary(java.lang.Integer id) {
-        return ejbFacade.find(id);
+        System.out.println(id);
+        current = ejbFacade.find(id);
+        Beneficiary pastBeneficiary = current;
+        current = null;
+        FacesContext context2 = FacesContext.getCurrentInstance();
+        context2.getExternalContext().getSessionMap().put("Beneficiario", pastBeneficiary);
+        
+            return pastBeneficiary;   
     }
-    
 
     @FacesConverter(forClass = Beneficiary.class)
     public static class BeneficiaryControllerConverter implements Converter {

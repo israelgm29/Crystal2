@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Asignación de Medidores"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+
+            <div class="row">
+                <div class="col">
+                    <h:form id="newAssigned" prependId="false">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <h:outputLabel value="#{bundle.EditAssignedLabel_assignmentdate}" for="assignmentdate" />
+
+                            <h:inputText id="myInput" class=" active form-control form-control-sm"  pt:placeholder="Seleccionar Fecha" value="#{assignedController.selected.assignmentdate}" title="#{bundle.CreateAssignedTitle_assignmentdate}" required="true" requiredMessage="#{bundle.CreateAssignedRequiredMessage_assignmentdate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:inputText>
+                            <h:outputLabel value="#{bundle.EditAssignedLabel_status}" for="status" />
+                            <h:selectOneMenu id="status" class="form-select" value="#{assignedController.selected.status}" title="#{bundle.EditAssignedTitle_status}" required="true" requiredMessage="#{bundle.EditAssignedRequiredMessage_status}">
+                                <f:selectItem  itemDisabled="true" itemLabel ="Seleccionar ..." />
+                                <f:selectItem itemValue = "ENABLE" itemLabel = "ASIGNADO" /> 
+                                <f:selectItem itemValue = "FALSE" itemLabel = "SIN ASIGNAR" />
+                            </h:selectOneMenu>
+                            <h:outputLabel value="#{bundle.EditAssignedLabel_beneficiary}" for="beneficiary" />
+                            <h:selectOneMenu id="ex-dropdown-input" class="form-select "  binding="#{input2}" value="#{assignedController.selected.beneficiary}" title="#{bundle.EditAssignedTitle_beneficiary}" required="true" requiredMessage="#{bundle.EditAssignedRequiredMessage_beneficiary}">
+                                <f:selectItems value="#{beneficiaryController.itemsAvailableSelectOne}"/>
+                                <f:ajax listener="#{beneficiaryController.getBeneficiary(input2.value.id)}"/>
+                                <f:ajax execute="beneficiary" render="currentUser"  />
+                            </h:selectOneMenu>
+                            <h:outputLabel value="#{bundle.EditAssignedLabel_measurer}" for="measurer" />
+                            <h:selectOneMenu id="measurer"  binding="#{input1}" class="form-select"  value="#{assignedController.selected.measurer}" title="#{bundle.EditAssignedTitle_measurer}" required="true" requiredMessage="#{bundle.EditAssignedRequiredMessage_measurer}">
+                                <f:selectItems value="#{measurerController.enableMeasurer()}"/>
+                                <f:ajax  listener ="#{measurerController.activeMeasurer(input1.value.id)}"/>    
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <div class="d-flex p-2">
+                            <h:commandLink class="btn btn-primary m-2" action="#{assignedController.create()}" value="#{bundle.EditAssignedSaveLink}">
+                                <f:ajax  listener="#{measurerController.update()}"/>
+                            </h:commandLink>
+                            <h:commandLink class="btn btn-primary m-2" action="#{assignedController.prepareList}" value="#{bundle.EditAssignedShowAllLink}" immediate="true"/>
+                        </div>
+
+                    </h:form>
+                </div>
+                <div class="col">
+                    <h:form id="currentUser">
+                        <h4>Datos del Beneficiario</h4>
+                        <div class="text-center">
+                            <h:graphicImage  class="rounded mx-auto d-block" width="150px" height="150px" value="#{resource['images/menUser.png']}"/>                                     
+
+                            <p> <strong> Abonado:</strong> <label  class="text-capitalize" for="size_1">#{Beneficiario}</label></p>
+                            <p> <strong> Cédula:</strong> <label class="text-capitalize" for="size_1">#{Beneficiario.dni}</label></p>
+                            <p> <strong> Télefono:</strong> <label class="text-capitalize" for="size_1">#{Beneficiario.telephone}</label></p>
+                            <p> <strong> Dirección:</strong> <label class="text-capitalize" for="size_1">#{Beneficiario.address}</label></p>
+                            <p> <strong> Referencia:</strong> <label class="text-capitalize" for="size_1">#{Beneficiario.placereference}</label></p>
+
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+
+            <script>
+                function formClean() {
+                    document.getElementById("newAssigned").reset();
+                }
+            </script>
+        </ui:define>
+    </ui:composition>
+
+</html>
+

@@ -4,10 +4,12 @@ import entidades.Measurer;
 import modelo.util.JsfUtil;
 import modelo.util.PaginationHelper;
 import beans.MeasurerFacade;
+import entidades.Status;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.UUID;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -192,9 +194,29 @@ public class MeasurerController implements Serializable {
     public Measurer getMeasurer(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
-    public List<Measurer> all(){
-     List<Measurer> list = ejbFacade.findAll();
-     return list;
+
+    public List<Measurer> all() {
+        List<Measurer> list = ejbFacade.findAll();
+        return list;
+    }
+
+    public List<Measurer> enableMeasurer() {
+
+        List<Measurer> list = ejbFacade.findEnableMeasurer();
+        return list;
+    }
+
+    public void activeMeasurer(java.lang.Integer id) {
+        //change measurer status from avalible to Active
+        current = ejbFacade.find(id);
+        Status status = new Status();
+        status.setId(1);
+        status.setName("Activo"); // set update Active
+        current.setStatusid(status);
+    }
+
+    private String random() {
+        return UUID.randomUUID().toString().substring(0, 10);
     }
 
     @FacesConverter(forClass = Measurer.class)
